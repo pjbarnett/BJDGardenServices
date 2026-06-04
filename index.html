@@ -106,7 +106,7 @@
 
   /* SERVICES */
   #services { background: var(--cream); }
-  .services__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 48px; }
+  .services__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 48px; }
   .service { background: var(--surface); border-radius: var(--radius); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); cursor: default; }
   .service:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
   .service__img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform .6s; }
@@ -326,6 +326,14 @@
         </div>
       </div>
       <div class="service reveal reveal-delay-3">
+        <img class="service__img" src="images/farm-after.jpg" alt="Farm yard clearance" loading="lazy">
+        <div class="service__body">
+          <h3>Farm Yard Clearance</h3>
+          <p>Farmyards, barn areas, paddocks and outbuildings cleared and tidied. We tackle overgrown farm buildings, yard waste, and heavy vegetation with the right equipment.</p>
+          <a href="#contact" class="service__link">Get a Quote &rarr;</a>
+        </div>
+      </div>
+      <div class="service reveal reveal-delay-4">
         <img class="service__img" src="https://images.unsplash.com/photo-1598902108854-10e335adac99?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Continual maintenance" loading="lazy">
         <div class="service__body">
           <h3>Continual Maintenance</h3>
@@ -376,6 +384,19 @@
         <img src="images/patio-after.jpg" alt="Patio after clearance" loading="eager">
       </div>
       <div class="comparison__handle" id="comparisonHandle2">
+        <div class="comparison__handle-circle">&harr;</div>
+      </div>
+      <div class="comparison__label comparison__label--before">Before</div>
+      <div class="comparison__label comparison__label--after">After</div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:600;color:var(--green);margin-top:40px;margin-bottom:8px;">Farm Yard Clearance</h3>
+    <div class="comparison" id="comparison3">
+      <img class="comparison__img" src="images/farm-before.jpg" alt="Farm yard before clearance" loading="eager">
+      <div class="comparison__after" id="comparisonAfter3">
+        <img src="images/farm-after.jpg" alt="Farm yard after clearance" loading="eager">
+      </div>
+      <div class="comparison__handle" id="comparisonHandle3">
         <div class="comparison__handle-circle">&harr;</div>
       </div>
       <div class="comparison__label comparison__label--before">Before</div>
@@ -483,12 +504,12 @@
         <div class="gallery__overlay">Shed &amp; boundary clearance</div>
       </div>
       <div class="gallery__item reveal reveal-delay-4">
-        <img src="images/gallery-after.jpg" alt="Garden clearance result" loading="lazy">
-        <div class="gallery__overlay">Full garden clearance</div>
+        <img src="images/gallery-farm-after.jpg" alt="Farm yard after clearance" loading="lazy">
+        <div class="gallery__overlay">Farm yard clearance result</div>
       </div>
       <div class="gallery__item reveal reveal-delay-5">
-        <img src="images/patio-before.jpg" alt="Patio before clearance" loading="lazy">
-        <div class="gallery__overlay">Patio before clearance</div>
+        <img src="images/gallery-farm-before.jpg" alt="Farm yard before clearance" loading="lazy">
+        <div class="gallery__overlay">Farm yard before clearance</div>
       </div>
     </div>
   </div>
@@ -572,6 +593,7 @@
         <h4>Services</h4>
         <a href="#services">Garden Clearance</a>
         <a href="#services">Weeding</a>
+        <a href="#services">Farm Yard Clearance</a>
         <a href="#services">Continual Maintenance</a>
       </div>
       <div class="footer__col">
@@ -628,6 +650,7 @@ function initComparison(id) {
 
 initComparison('comparison');
 initComparison('comparison2');
+initComparison('comparison3');
 
 // Close mobile nav on link click
 document.querySelectorAll('.nav__links a').forEach(a => {
