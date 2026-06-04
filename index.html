@@ -354,7 +354,9 @@
   <div class="container">
     <div class="section-label">Our Work</div>
     <h2>See the <span class="accent">Difference</span></h2>
-    <p class="section-desc">Drag the slider to reveal the transformation.</p>
+    <p class="section-desc">Drag the sliders to reveal the transformations.</p>
+
+    <h3 style="font-size:1.1rem;font-weight:600;color:var(--green);margin-bottom:8px;">Garden Clearance</h3>
     <div class="comparison" id="comparison">
       <img class="comparison__img" src="images/transformation-before.jpg" alt="Garden before clearance" loading="eager">
       <div class="comparison__after" id="comparisonAfter">
@@ -366,6 +368,20 @@
       <div class="comparison__label comparison__label--before">Before</div>
       <div class="comparison__label comparison__label--after">After</div>
     </div>
+
+    <h3 style="font-size:1.1rem;font-weight:600;color:var(--green);margin-top:40px;margin-bottom:8px;">Patio Makeover</h3>
+    <div class="comparison" id="comparison2">
+      <img class="comparison__img" src="images/patio-before.jpg" alt="Patio before clearance" loading="eager">
+      <div class="comparison__after" id="comparisonAfter2">
+        <img src="images/patio-after.jpg" alt="Patio after clearance" loading="eager">
+      </div>
+      <div class="comparison__handle" id="comparisonHandle2">
+        <div class="comparison__handle-circle">&harr;</div>
+      </div>
+      <div class="comparison__label comparison__label--before">Before</div>
+      <div class="comparison__label comparison__label--after">After</div>
+    </div>
+
   </div>
 </section>
 
@@ -455,24 +471,24 @@
     <h2>Recent <span class="accent">Projects</span></h2>
     <div class="gallery__grid">
       <div class="gallery__item reveal reveal-delay-1">
-        <img src="images/gallery-after.jpg" alt="After garden clearance" loading="lazy">
-        <div class="gallery__overlay">Complete garden makeover</div>
+        <img src="images/patio-after.jpg" alt="Patio makeover after" loading="lazy">
+        <div class="gallery__overlay">Complete patio makeover</div>
       </div>
       <div class="gallery__item reveal reveal-delay-2">
-        <img src="images/gallery-before.jpg" alt="Before overgrown clearance" loading="lazy">
-        <div class="gallery__overlay">Before: clearance project</div>
+        <img src="images/garden-bed.jpg" alt="Garden bed with pond feature" loading="lazy">
+        <div class="gallery__overlay">Garden bed &amp; pond care</div>
       </div>
       <div class="gallery__item reveal reveal-delay-3">
-        <img src="images/gallery-maintenance.jpg" alt="Maintained garden after clearance" loading="lazy">
-        <div class="gallery__overlay">Regular maintenance</div>
+        <img src="images/shed-area.jpg" alt="Shed and boundary area" loading="lazy">
+        <div class="gallery__overlay">Shed &amp; boundary clearance</div>
       </div>
       <div class="gallery__item reveal reveal-delay-4">
-        <img src="images/gallery-weeding.jpg" alt="Weeded and cared for garden" loading="lazy">
-        <div class="gallery__overlay">Weeding &amp; border care</div>
+        <img src="images/gallery-after.jpg" alt="Garden clearance result" loading="lazy">
+        <div class="gallery__overlay">Full garden clearance</div>
       </div>
       <div class="gallery__item reveal reveal-delay-5">
-        <img src="images/gallery-ongoing.jpg" alt="Tidy maintained garden" loading="lazy">
-        <div class="gallery__overlay">Ongoing maintenance</div>
+        <img src="images/patio-before.jpg" alt="Patio before clearance" loading="lazy">
+        <div class="gallery__overlay">Patio before clearance</div>
       </div>
     </div>
   </div>
@@ -588,25 +604,30 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Before/after slider
-const comp = document.getElementById('comparison');
-const after = document.getElementById('comparisonAfter');
-const handle = document.getElementById('comparisonHandle');
-let dragging = false;
+// Before/after sliders
+function initComparison(id) {
+  const comp = document.getElementById(id);
+  const after = document.getElementById(id.replace('comparison', 'comparisonAfter'));
+  const handle = document.getElementById(id.replace('comparison', 'comparisonHandle'));
+  let dragging = false;
 
-const setPos = (x) => {
-  const rect = comp.getBoundingClientRect();
-  let pct = ((x - rect.left) / rect.width) * 100;
-  pct = Math.max(5, Math.min(95, pct));
-  after.style.width = pct + '%';
-  handle.style.left = pct + '%';
-};
+  const setPos = (x) => {
+    const rect = comp.getBoundingClientRect();
+    let pct = ((x - rect.left) / rect.width) * 100;
+    pct = Math.max(5, Math.min(95, pct));
+    after.style.width = pct + '%';
+    handle.style.left = pct + '%';
+  };
 
-comp.addEventListener('mousedown', (e) => { dragging = true; setPos(e.clientX); });
-document.addEventListener('mousemove', (e) => { if(dragging) setPos(e.clientX); });
-document.addEventListener('mouseup', () => { dragging = false; });
-comp.addEventListener('touchstart', (e) => { setPos(e.touches[0].clientX); });
-comp.addEventListener('touchmove', (e) => { setPos(e.touches[0].clientX); });
+  comp.addEventListener('mousedown', (e) => { dragging = true; setPos(e.clientX); });
+  document.addEventListener('mousemove', (e) => { if(dragging) setPos(e.clientX); });
+  document.addEventListener('mouseup', () => { dragging = false; });
+  comp.addEventListener('touchstart', (e) => { setPos(e.touches[0].clientX); });
+  comp.addEventListener('touchmove', (e) => { setPos(e.touches[0].clientX); });
+}
+
+initComparison('comparison');
+initComparison('comparison2');
 
 // Close mobile nav on link click
 document.querySelectorAll('.nav__links a').forEach(a => {
